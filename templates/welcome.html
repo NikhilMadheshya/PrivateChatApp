@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="https://kit.fontawesome.com/ac80682979.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
+    <script defer src="./socket.io/socket.io.js"></script>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <section class="container">
+   <h3 id='user'></h3>
+    <nav class="nav">
+        <label id='logo'><span>C</span>hat<span>B</span>ox</label>
+        <div class="users">
+          <label><span class="fa fa-users"></span>&nbsp;Users</label>
+          <ul class='users-list'>
+          </ul>
+        </div>
+    </nav>
+    <div class="typing-info">
+     <p style="color:orangered" id='typeInfo'></p>
+    </div>
+    <div class="sendTo">
+    <label>To</label>
+    <input type="email" placeholder="someone@gmail.com" id="sendto">
+    </div>
+   
+    <div class="message-container">
+        <!-- <div class="other">
+        <div class="message">
+            <label>Other</label>
+            <span>Hello !</span>
+        </div>
+        <span id='time'>1:30 PM</span>
+        </div>
+        <div class="your">
+            <div class="message">
+                <label>You</label>
+                <span>Hii!</span>
+            </div>
+            <span id='time'>1:31 PM</span>
+            </div> -->
+        </div>
+     
+        <div class="typeBox">
+         <input type="text" placeholder=" Type Your Message" id='msg'>
+         <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </section>
+    
+    
+
+</body>
+</html>
