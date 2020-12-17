@@ -2,9 +2,13 @@
 var socket=io();
 let isTyping=false;
 
+// this is for tracking specific file that you have send
+const filesId=[];
+
 //selectors
 const userList=document.querySelector('.users-list');
 const messageContainer=document.querySelector('.message-container');
+const imgFile=document.querySelector('#img-file');
 
 
 
@@ -151,4 +155,93 @@ socket.on('message',({from,msg})=>{
     other.appendChild(message);
     messageContainer.appendChild(other);
     }
+});
+
+imgFile.addEventListener('change',(event)=>{
+
+    const file=event.target.files[0];
+    const fr=new FileReader();
+    const file_id='file'+Date.now()+'id';
+
+    fr.onloadend=()=>{
+    const image=document.createElement('div');
+    image.classList.add('send--image');
+    const img=document.createElement('img');
+    img.src=fr.result;
+    image.appendChild(img);
+
+    const info=document.createElement('div');
+    info.classList.add('info');
+    const download=document.createElement('a');
+    download.setAttribute('href',fr.result);
+    download.setAttribute('class','fas fa-file-download');
+    download.setAttribute('download',Date.now()+file.name);
+    info.appendChild(download);
+    const status=document.createElement('span');
+    status.setAttribute('id',file_id);
+    status.innerText='sending';
+    info.appendChild(status);
+
+    image.appendChild(info);
+    messageContainer.appendChild(image);
+    filesId.push(file_id);
+    sendImageFile(file,file_id);
+    };
+
+    fr.readAsDataURL(file);
+
+});
+
+
+function sendImageFile(file,file_id)
+{
+    const fr=new FileReader();
+
+    fr.onloadend=()=>{
+
+        const setObj={
+            file_id,
+            data:fr.result,
+            to:document.querySelector('#sendto').value,
+            file_name:file.name
+        }
+
+        socket.emit('sendImageFile',setObj);
+
+    }
+
+    fr.readAsArrayBuffer(file);
+}
+
+socket.on('receivedImageFile',(data,file_name,from,file_id)=>{
+
+console.log(file_name);
+let imageUrl=`data:image/jpeg;base64,${data}`;
+const image=document.createElement('div');
+image.classList.add('received--image');
+const img=document.createElement('img');
+img.src=imageUrl;
+image.appendChild(img);
+
+const info=document.createElement('div');
+info.classList.add('info');
+const download=document.createElement('a');
+download.setAttribute('href',imageUrl);
+download.setAttribute('class','fas fa-file-download');
+download.setAttribute('download',Date.now()+file_name);
+info.appendChild(download);
+const status=document.createElement('span');
+status.innerText=from;
+info.appendChild(status);
+image.appendChild(info);
+messageContainer.appendChild(image);
+
+socket.emit('imageFileIsReceived',from,file_id);
+
+
+});
+
+socket.on('ImageReceived',(id)=>
+{
+    document.querySelector(`#${id}`).innerText='send';
 })

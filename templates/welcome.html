@@ -28,6 +28,7 @@
     <label>To</label>
     <input type="email" placeholder="someone@gmail.com" id="sendto">
     </div>
+    <input type="file" id='img-file'  style="display: none;"/>
    
     <div class="message-container">
         <!-- <div class="other">
@@ -43,12 +44,29 @@
                 <span>Hii!</span>
             </div>
             <span id='time'>1:31 PM</span>
-            </div> -->
+        </div> -->
+        
+        <!-- <div class="send--image">
+            <img src='./' />
+           <div class="info">
+            <a href='#' class="fas fa-file-download"></a>
+            <span id=''>sending</span>
+           </div> 
+        </div> -->
+          <!-- <div class="received--image">
+            <img src='./' />
+           <div class="info">
+            <a href='#' class="fas fa-file-download" download='filename'></a>
+            <span id=''>filename</span>
+           </div> 
+        </div> -->
+
         </div>
      
         <div class="typeBox">
          <input type="text" placeholder=" Type Your Message" id='msg'>
-         <button onclick="sendMessage()">Send</button>
+         <label for='img-file' class="fa fa-image" id='attach'></label>
+         <button class="fa fa-send-o" onclick="sendMessage()" id='send'></button>
         </div>
 
     </section>

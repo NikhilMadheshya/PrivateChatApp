@@ -152,15 +152,37 @@ transition: all 0.5s ease;
 }
 
 .typeBox button{
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 45px;
     border:none;
     outline:none;
-    background:#222;
-    color: limegreen;
     cursor: pointer;
+    background: none;
+    background: #222;
+    font-size: 1.2em;
+    border-radius: 50%;
+    margin: 0 10px;
 
 }
+
+.typeBox #attach
+{
+   color:orangered;
+   height: 40px;
+   width: 45px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: #222;
+   margin: 0 5px;
+   border-radius: 50%;
+   cursor: pointer;
+}
+.typeBox #send
+{
+    color:orchid;
+}
+
 .message-container .other,
 .message-container .your
 {
@@ -216,4 +238,57 @@ top:100%;
 .message-container .your
 {
     justify-content: flex-end;
+}
+.message-container .send--image,
+.message-container .received--image
+{
+    display: flex;
+    flex-direction: column;
+    background:none;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    width: 200px;
+}
+.message-container .send--image img,
+.message-container .received--image img
+{
+    height:150px;
+    width: 100%;
+    object-fit: contain;
+
+}
+.message-container .send--image .info,
+.message-container .received--image .info
+{
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    width: 100%;
+    background: lightgreen;
+    box-sizing: border-box;
+}
+.message-container .received--image .info
+{
+    background: linen;
+}
+
+.message-container .send--image .info a,
+.message-container .received--image .info a
+{
+    text-decoration: none;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: medium;
+    display: block;
+    border-radius: 50%;
+    background: #fff;
+    color:orangered;
+    margin-right: 10px;
+}
+.message-container .send--image .info span,
+.message-container .received--image .info span
+{
+    font-size: 0.7em;
 }
